@@ -1,24 +1,16 @@
 <h1>Sign up</h1>
 <div>
-  <div>
-    <%= form_for @user do |f| %>
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :name, required: false %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+    <%= f.input :surname, required: false %>
 
-      <%= f.label :surname %>
-      <%= f.text_field :surname %>
+    <%= f.input :login, required: true, input_html: { maxlength: 20 } %>
 
-      <%= f.label :login %>
-      <%= f.text_field :login %>
+    <%= f.input :password, required: true %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+    <%= f.input :password_confirmation, required: true %>
 
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-
-      <%= f.submit "Create" %>
+    <%= f.submit "Create" %>
     <% end %>
-  </div>
 </div>

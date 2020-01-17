@@ -1,11 +1,11 @@
 <div>
   <h1>
-    <%= @user.name unless @user.name.nil? %>
+    <%= @user.name if @user.name %>
   </h1>
   <h1>
-    <%= @user.surname unless @user.surname.nil? %>
+    <%= @user.surname if @user.surname %>
   </h1>
   <h1>
-    <%= @user.login unless @user.login.nil? %>
+    <%= @user.login %>
   </h1>
 </div>

@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.role = 'user'
     if @user.save
       redirect_to @user
     else
@@ -14,7 +13,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    begin
+      @user = User.find(params[:id])
+    rescue
+      flash[:error] = 'User not found'
+      redirect_to root_path
+    else
+      return @user
+    end
   end
 
   private

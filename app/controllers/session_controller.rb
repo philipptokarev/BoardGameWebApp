@@ -1,6 +1,4 @@
 class SessionController < ApplicationController
-  include SessionHelper
-
   def create
     @user = User.find_by(login: params[:session][:login].downcase)
     if @user && @user.authenticate(params[:session][:password])
