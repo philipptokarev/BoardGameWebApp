@@ -4,9 +4,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to @user
+    user = User.new(user_params)
+    if user.save
+      log_in user
+      redirect_to user
     else
       redirect_to signup_path
     end
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
       flash[:error] = 'User not found'
       redirect_to root_path
     else
-      return @user
+      @user
     end
   end
 
