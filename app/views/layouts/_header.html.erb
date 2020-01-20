@@ -1,9 +1,11 @@
 <%= link_to 'Home', root_path %>
-<%= link_to 'Admin home', admin_root_path if request.original_url.include?('admin') %>
 <% if logged_in? %>
+  <%= link_to 'Admin home', admin_root_path if current_user.admin? %>
   <%= link_to 'Sign Out', signout_path, method: :delete %>
   <%= link_to 'Profile', user_path(current_user) %>
 <% else %>
   <%= link_to 'Sign In', signin_path %>
 <% end %>
-<%= flash[:error] %>
+<% flash.each do |message_type, message| %>
+  <%= content_tag(:div, message) %>
+<% end %>
