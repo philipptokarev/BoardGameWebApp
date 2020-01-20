@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <th><%= sortable 'rating' %></th>
+    <th><%= sortable 'name' %></th>
+    <th>Description</th>
+    <th>Image</th>
+    <th><%= sortable 'created_at' %></th>
+    <th><%= sortable 'updated_at' %></th>
+  </thead>
+  <tbody>
+    <% @games.each do |g| %>
+      <tr>
+        <td><%= g.rating %></td>
+        <td><%= g.name %></td>
+        <td><%= g.description %></td>
+        <td><img style="width: 100px" src="<%= g.image %>"></td>
+        <td><%= g.created_at.strftime('%H:%M %d.%m.%Y') %></td>
+        <td><%= g.updated_at.strftime('%H:%M %d.%m.%Y') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
