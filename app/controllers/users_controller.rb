@@ -14,14 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    begin
-      @user = User.find(params[:id])
-    rescue
-      flash[:error] = 'User not found'
-      redirect_to root_path
-    else
-      @user
-    end
+    @user = User.find(params[:id])
   end
 
   private

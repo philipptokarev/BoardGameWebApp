@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   helper_method :logged_in?, :current_user, :sortable
 
   def log_in user
@@ -6,9 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    if session[:user_id]
-      User.find(session[:user_id])
-    end
+    session[:user_id] && User.find(session[:user_id])
   end
 
   def current_user?(user)
@@ -29,4 +28,9 @@ class ApplicationController < ActionController::Base
     direction = column == params[:sort] && params[:direction] == 'asc' ? 'desc' : 'asc'
     helpers.link_to title, sort: column, direction: direction
   end
+
+  private
+    def record_not_found
+      redirect_to root_path, alert: "Coundn't find it"
+    end
 end

@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'base#index'
 
-    resources :board_games
+    resources :games
   end
 
+  resources :games, only: [:show] do
+    resources :reviews
+  end
   resources :users
 end
