@@ -1,2 +1,3 @@
 <h1>Hello! This is home page of BoardGames site</h1>
-<%= link_to 'Sign Up', signup_path %>
+<%= link_to 'Sign Up', signup_path unless logged_in? %>
+<%= current_user %>

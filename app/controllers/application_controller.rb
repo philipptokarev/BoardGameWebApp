@@ -6,10 +6,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    if user_id = session[:user_id]
-      @current_user ||= User.find(user_id)
-    else
-      nil
+    if session[:user_id]
+      User.find(session[:user_id])
     end
   end
 
@@ -18,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !current_user.nil?
+    current_user
   end
 
   def log_out

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'base#index'
-    get 'catalog', to: 'board_games#index'
+
+    resources :board_games
   end
 
   resources :users

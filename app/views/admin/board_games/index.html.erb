@@ -16,6 +16,8 @@
         <td><img style="width: 100px" src="<%= g.image %>"></td>
         <td><%= g.created_at.strftime('%H:%M %d.%m.%Y') %></td>
         <td><%= g.updated_at.strftime('%H:%M %d.%m.%Y') %></td>
+        <td><%= link_to 'Edit', edit_admin_board_game_path(g) %></td>
+        <td><%= link_to 'Delete', admin_board_game_path(g), method: :delete, data: { confirm: 'You sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
