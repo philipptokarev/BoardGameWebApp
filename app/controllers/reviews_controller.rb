@@ -7,9 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    review = Review.new(review_params)
-    review.game_id = @game.id
-    review.user_id = current_user.id
+    review = @game.reviews.new(review_params.merge(user_id: current_user.id)
     if review.save
       redirect_to game_path(@game), notice: 'Review created'
     else
