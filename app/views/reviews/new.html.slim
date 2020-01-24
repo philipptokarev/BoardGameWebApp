@@ -1,0 +1,7 @@
+h1 Leave review
+= simple_form_for [@game, @game.reviews.build] do |r|
+  = r.input :review
+
+  = r.submit 'Leave'
+end
+

@@ -1,0 +1,16 @@
+div
+  = image_tag @game.image, width: '200'
+  h1 = @game.name
+  p = @game.description
+p
+  -if logged_in?
+    Here you can leave review for this game
+    = link_to 'Add review', new_game_review_path(@game) unless current_user.reviews.find_by(game_id: @game.id)
+    = render @game.reviews
+  - else
+    | Please
+    = link_to 'sign in', signin_path
+    | or
+    = link_to 'sign up', signup_path
+    to leave a review for this game
+  end

@@ -1,0 +1,14 @@
+h1 Sign up
+= simple_form_for @user do |f|
+  = f.input :name, required: false
+
+  = f.input :surname, required: false
+
+  = f.input :login, required: true, input_html: { maxlength: 20 }
+
+  = f.input :password, required: true
+
+  = f.input :password_confirmation, required: true
+
+  = f.submit "Create"
+end

@@ -1,0 +1,14 @@
+h1 Add board game
+= simple_form_for [:admin, @game] do |f|
+  = f.input :name, required: true
+
+  = f.input :description, required: true
+
+  = f.input :video
+
+  = f.input :reference
+
+  = f.input :image, required: true
+
+  = f.submit "Create"
+end
