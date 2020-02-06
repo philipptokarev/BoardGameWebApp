@@ -1,5 +1,5 @@
 class Admin::GamesController < Admin::BaseController
-  before_action :find_game, only: [:edit, :update, :destroy]
+  before_action :find_game, only: %i[edit update destroy]
   def index
     @games = Game.order(sort_column + ' ' + sort_direction)
   end
@@ -11,18 +11,17 @@ class Admin::GamesController < Admin::BaseController
   def create
     game = Game.new(game_params)
     if game.save
-      redirect_to admin_games_path, notice: "Game added"
+      redirect_to admin_games_path, notice: 'Game added'
     else
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @game.update(game_params)
-      redirect_to admin_games_path, notice: "Game updated"
+      redirect_to admin_games_path, notice: 'Game updated'
     else
       render :edit
     end
@@ -34,19 +33,20 @@ class Admin::GamesController < Admin::BaseController
   end
 
   private
-    def sort_column
-      params[:sort] ||= 'name'
-    end
 
-    def sort_direction
-      params[:direction] ||= 'asc'
-    end
+  def sort_column
+    params[:sort] ||= 'name'
+  end
 
-    def game_params
-      params.require(:game).permit(:name, :description, :video, :reference, :image)
-    end
+  def sort_direction
+    params[:direction] ||= 'asc'
+  end
 
-    def find_game
-      @game = Game.find(params[:id])
-    end
+  def game_params
+    params.require(:game).permit(:name, :description, :video, :reference, :image)
+  end
+
+  def find_game
+    @game = Game.find(params[:id])
+  end
 end

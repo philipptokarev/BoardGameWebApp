@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   helper_method :logged_in?, :current_user, :sortable
 
-  def log_in user
+  def log_in(user)
     session[:user_id] = user.id
   end
 
@@ -30,7 +30,8 @@ class ApplicationController < ActionController::Base
   end
 
   private
-    def record_not_found
-      redirect_to root_path, alert: "Coundn't find it"
-    end
+
+  def record_not_found
+    redirect_to root_path, alert: "Coundn't find it"
+  end
 end
