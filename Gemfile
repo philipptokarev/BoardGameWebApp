@@ -25,7 +25,13 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem "brakeman", require: false
   gem 'rubocop', require: false
+  gem "jasmine", "> 2.0"
+  gem "jasmine-jquery-rails"
+  gem "rubocop-rspec", require: false
+  gem "scss_lint", require: false
+  gem "slim_lint", require: false
   gem 'rspec-rails', '4.0.0.beta3'
   gem 'factory_bot_rails'
 end
