@@ -1,7 +1,14 @@
 h1 Leave review
 = simple_form_for [@game, @game.reviews.build] do |r|
+  div#rating-form
+    label Rating
+
   = r.input :review
 
   = r.submit 'Leave'
 end
-
+javascript:
+  $('#rating-form').raty({
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });

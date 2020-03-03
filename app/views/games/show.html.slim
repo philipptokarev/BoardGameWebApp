@@ -1,6 +1,12 @@
 div
   = image_tag @game.image, width: '200'
   h1 = @game.name
+  h2 Average rating
+  div.average-reviews-rating*{data: {score: @game.average_rating}}
+  span
+    | Based on
+    = @game.reviews.count
+    |  reviews
   p = @game.description
 p
   -if logged_in?
@@ -16,3 +22,11 @@ p
     = link_to 'sign up', signup_path
     to leave a review for this game
   end
+javascript:
+  $('.average-reviews-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });

@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_many :reviews
-  has_many :ratings
 
   validates :login, presence: true, length: { maximum: 255 },
                     uniqueness: { case_sensitive: false }

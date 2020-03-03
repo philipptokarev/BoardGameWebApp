@@ -34,6 +34,7 @@ group :development, :test do
   gem "slim_lint", require: false
   gem 'rspec-rails', '4.0.0.beta3'
   gem 'factory_bot_rails'
+  gem 'ffaker'
 end
 
 group :development do
@@ -47,6 +48,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'formulaic'
 end
 
 

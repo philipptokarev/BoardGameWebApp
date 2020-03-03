@@ -1,7 +1,7 @@
 class Admin::GamesController < Admin::BaseController
   before_action :find_game, only: %i[edit update destroy]
   def index
-    @games = Game.order(sort_column + ' ' + sort_direction)
+    @games = Game.order(sort_column => sort_direction)
   end
 
   def new
