@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       log_in user
-      redirect_to user
+      redirect_to user, notice: 'You have created an account'
     else
-      redirect_to signup_path
+      redirect_to signup_path, notice: 'Maybe account with this login is already taken'
     end
   end
 

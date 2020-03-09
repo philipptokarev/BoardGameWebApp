@@ -7,15 +7,5 @@ table
     th = sortable 'created_at'
     th = sortable 'updated_at'
   tbody
-    - @games.each do |g|
-      tr
-        td = g.average_rating
-        td = g.name
-        td = g.description
-        td
-          img style="width: 100px" src = g.image
-        td = g.created_at.strftime('%H:%M %d.%m.%Y')
-        td = g.updated_at.strftime('%H:%M %d.%m.%Y')
-        td = link_to 'Edit', edit_admin_game_path(g)
-        td = link_to 'Delete', admin_game_path(g), method: :delete, data: { confirm: 'You sure?' }
-    end
+    = render @games
+

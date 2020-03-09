@@ -6,10 +6,7 @@ class Game < ApplicationRecord
   validates :image, presence: true
 
   def average_rating
-    if reviews.blank?
-      0
-    else
-      reviews.average(:rating).round(2) unless reviews.average(:rating).nil?
-    end
+    return nil if reviews.count.zero?
+    reviews.average(:rating).round(2)
   end
 end

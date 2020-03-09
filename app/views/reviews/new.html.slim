@@ -1,6 +1,6 @@
 h1 Leave review
 = simple_form_for [@game, @game.reviews.build] do |r|
-  div#rating-form
+  #rating-form
     label Rating
 
   = r.input :review

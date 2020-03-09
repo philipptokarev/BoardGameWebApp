@@ -1,12 +1,14 @@
 div
   = image_tag @game.image, width: '200'
   h1 = @game.name
-  h2 Average rating
-  div.average-reviews-rating*{data: {score: @game.average_rating}}
-  span
-    | Based on
-    = @game.reviews.count
-    |  reviews
+  - unless @game.average_rating.nil?
+    h2 Average rating
+    .average-reviews-rating data-score = @game.average_rating
+    span
+      | Based on
+      = @game.reviews.count
+      |  reviews
+  end
   p = @game.description
 p
   -if logged_in?

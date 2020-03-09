@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   helper_method :logged_in?, :current_user, :sortable
 
@@ -25,8 +26,8 @@ class ApplicationController < ActionController::Base
 
   def sortable(column, title = nil)
     title ||= column.titleize
-    direction = column == params[:sort] && params[:direction] == 'asc' ? 'desc' : 'asc'
-    helpers.link_to title, sort: column, direction: direction
+    direction = params[:sort_direction] == 'asc' ? 'desc' : 'asc'
+    helpers.link_to title, sort_column: column, sort_direction: direction
   end
 
   private

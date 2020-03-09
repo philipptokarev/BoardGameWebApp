@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_101221) do
+ActiveRecord::Schema.define(version: 2020_03_09_202650) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
@@ -32,12 +33,12 @@ ActiveRecord::Schema.define(version: 2020_03_03_101221) do
     t.text "review", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "rating"
+    t.integer "rating", default: 0
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "login", null: false
+    t.citext "login", null: false
     t.string "password_digest", null: false
     t.string "name"
     t.string "surname"
