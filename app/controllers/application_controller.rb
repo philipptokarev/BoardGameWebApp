@@ -24,12 +24,6 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
-  def sortable(column, title = nil)
-    title ||= column.titleize
-    direction = params[:sort_direction] == 'asc' ? 'desc' : 'asc'
-    helpers.link_to title, sort_column: column, sort_direction: direction
-  end
-
   private
 
   def record_not_found

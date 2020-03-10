@@ -14,8 +14,8 @@ class FindGame
   private
 
   def sort(scoped, sort_column, sort_direction)
-    sort_direction ||= 'asc'
-    sort_column ||= 'name'
+    sort_direction ||= :asc
+    sort_column ||= :name
     scoped.order(sort_column => sort_direction)
   end
 

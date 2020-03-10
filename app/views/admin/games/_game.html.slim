@@ -4,7 +4,7 @@ tr
   td = game.description
   td
     img style="width: 100px" src = game.image
-  td = game.created_at.strftime('%H:%M %d.%m.%Y')
-  td = game.updated_at.strftime('%H:%M %d.%m.%Y')
+  td = I18n.l(game.created_at, format: :game)
+  td = I18n.l(game.updated_at, format: :game)
   td = link_to 'Edit', edit_admin_game_path(game)
   td = link_to 'Delete', admin_game_path(game), method: :delete, data: { confirm: 'You sure?' }

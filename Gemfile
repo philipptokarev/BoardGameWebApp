@@ -53,4 +53,3 @@ group :test do
   gem 'formulaic'
 end
 
-

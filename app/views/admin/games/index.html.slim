@@ -1,11 +1,11 @@
 table
   thead
-    th = sortable 'rating'
-    th = sortable 'name'
+    th = link_to "Rating", sort_column: :rating, sort_direction: params[:sort_direction] == 'asc' ? 'desc' : 'asc'
+    th = link_to "Name", sort_column: :name, sort_direction: params[:sort_direction] == 'asc' ? 'desc' : 'asc'
     th Description
     th Image
-    th = sortable 'created_at'
-    th = sortable 'updated_at'
+    th = link_to "Created at", sort_column: :created_at, sort_direction: params[:sort_direction] == 'asc' ? 'desc' : 'asc'
+    th = link_to "Updated at", sort_column: :updated_at, sort_direction: params[:sort_direction] == 'asc' ? 'desc' : 'asc'
   tbody
     = render @games
 
