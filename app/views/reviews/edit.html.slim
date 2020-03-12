@@ -1,6 +1,17 @@
 h1 Edit review
 = simple_form_for [@game, @review] do |r|
+  #rating-form data-score = @review.rating
+    label Rating
+
   = r.input :review
 
   = r.submit 'Update'
 end
+javascript:
+  $('#rating-form').raty({
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    scoreName: 'review[rating]'
+  });

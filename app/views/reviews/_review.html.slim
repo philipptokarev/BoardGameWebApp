@@ -1,5 +1,12 @@
+.review-rating data-score = review.rating
 p = review.review
-- if review.user_id == current_user.id
-  = link_to 'Edit', edit_game_review_path(review.game_id, review)
-  = link_to 'Delete', game_review_path(review.game_id, review), method: :delete, data: { confirm: 'Are you sure?'}
-end
+= link_to 'Edit', edit_game_review_path(review.game_id, review) if ReviewPolicy.new(current_user, review).manage?
+= link_to 'Delete', game_review_path(review.game_id, review), method: :delete, data: { confirm: 'Are you sure?'} if ReviewPolicy.new(current_user, review).delete?
+javascript:
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });

@@ -3,9 +3,9 @@ class SessionController < ApplicationController
     user = User.find_by(login: params[:session][:login].downcase)
     if user&.authenticate(params[:session][:password])
       log_in user
-      redirect_to user
+      redirect_to user, notice: 'You logged in'
     else
-      redirect_to signin_path
+      redirect_to signin_path, notice: 'Login or password are wrong'
     end
   end
 

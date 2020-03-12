@@ -10,46 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_124_141_359) do
+ActiveRecord::Schema.define(version: 2020_03_09_202650) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "citext"
+  enable_extension "plpgsql"
 
-  create_table 'games', force: :cascade do |t|
-    t.string 'name', null: false
-    t.text 'description', null: false
-    t.float 'rating'
-    t.string 'video'
-    t.string 'reference'
-    t.string 'image', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "games", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.float "rating"
+    t.string "video"
+    t.string "reference"
+    t.string "image", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'ratings', force: :cascade do |t|
-    t.integer 'user_id'
-    t.integer 'game_id'
-    t.integer 'rating'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['user_id'], name: 'index_ratings_on_user_id'
+  create_table "reviews", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "user_id", null: false
+    t.text "review", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "rating", default: 0
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table 'reviews', force: :cascade do |t|
-    t.integer 'game_id', null: false
-    t.integer 'user_id', null: false
-    t.text 'review', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['user_id'], name: 'index_reviews_on_user_id'
+  create_table "users", force: :cascade do |t|
+    t.citext "login", null: false
+    t.string "password_digest", null: false
+    t.string "name"
+    t.string "surname"
+    t.string "role", default: "user"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'login', null: false
-    t.string 'password_digest', null: false
-    t.string 'name'
-    t.string 'surname'
-    t.string 'role', default: 'user'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
 end

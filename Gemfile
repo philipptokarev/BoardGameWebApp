@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem "pundit"
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -34,6 +35,8 @@ group :development, :test do
   gem "slim_lint", require: false
   gem 'rspec-rails', '4.0.0.beta3'
   gem 'factory_bot_rails'
+  gem 'ffaker'
+  gem 'rack_session_access'
 end
 
 group :development do
@@ -47,6 +50,6 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'formulaic'
 end
-
 

@@ -1,21 +1,11 @@
 table
   thead
-    th = sortable 'rating'
-    th = sortable 'name'
+    th = link_to "Rating", sort_column: :rating, sort_direction: params[:sort_direction] == 'asc' ? 'desc' : 'asc'
+    th = link_to "Name", sort_column: :name, sort_direction: params[:sort_direction] == 'asc' ? 'desc' : 'asc'
     th Description
     th Image
-    th = sortable 'created_at'
-    th = sortable 'updated_at'
+    th = link_to "Created at", sort_column: :created_at, sort_direction: params[:sort_direction] == 'asc' ? 'desc' : 'asc'
+    th = link_to "Updated at", sort_column: :updated_at, sort_direction: params[:sort_direction] == 'asc' ? 'desc' : 'asc'
   tbody
-    - @games.each do |g|
-      tr
-        td = g.rating
-        td = g.name
-        td = g.description
-        td
-          img style="width: 100px" src = g.image
-        td = g.created_at.strftime('%H:%M %d.%m.%Y')
-        td = g.updated_at.strftime('%H:%M %d.%m.%Y')
-        td = link_to 'Edit', edit_admin_game_path(g)
-        td = link_to 'Delete', admin_game_path(g), method: :delete, data: { confirm: 'You sure?' }
-    end
+    = render @games
+

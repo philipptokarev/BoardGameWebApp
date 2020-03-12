@@ -1,7 +1,7 @@
 class Admin::GamesController < Admin::BaseController
   before_action :find_game, only: %i[edit update destroy]
   def index
-    @games = Game.order(sort_column + ' ' + sort_direction)
+    @games = FindGame.new(Game.all).call(permitted_params)
   end
 
   def new
@@ -34,12 +34,8 @@ class Admin::GamesController < Admin::BaseController
 
   private
 
-  def sort_column
-    params[:sort] ||= 'name'
-  end
-
-  def sort_direction
-    params[:direction] ||= 'asc'
+  def permitted_params
+    params.permit(:sort_column, :sort_direction, :game_count)
   end
 
   def game_params
